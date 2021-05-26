@@ -7,7 +7,7 @@ const PrivateRoute = ({ children, ...rest }: any) => {
   const { getCurrentUserInfo, currentUserInfoState } = useGetCurrentUserInfo();
 
   useEffect(() => {
-    getCurrentUserInfo();
+    // getCurrentUserInfo();
   }, [getCurrentUserInfo]);
 
   return (

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 
 import Header from '../Header';
