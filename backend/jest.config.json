@@ -2,5 +2,6 @@
     "testPathIgnorePatterns": ["./node_modules/"],
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "collectCoverageFrom": ["./src/**/*.ts"]
+    "collectCoverageFrom": ["./src/**/*.ts"],
+    "setupFilesAfterEnv": ["./src/setupTests.ts"]
 }

@@ -1,13 +1,10 @@
 import 'reflect-metadata';
-import dotenv from 'dotenv';
 import { createConnection } from 'typeorm';
 
 import { app } from './app';
 import { typeOrmConfig } from './typeormconfig';
 
 (async () => {
-    dotenv.config();
-
     if (!process.env.JWT_KEY) {
         throw new Error('JWT_KEY must be defined');
     }
