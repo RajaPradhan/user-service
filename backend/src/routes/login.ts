@@ -28,13 +28,13 @@ router.post(
         const userManager = new UserManagerService();
         const passwordManager = new PasswordManagerService();
 
+        // Verify email
         const existingUser = await userManager.findUserByEmail(email);
         if (!existingUser) {
             throw new BadRequestError('Invalid credentials');
         }
 
-        console.log('existingUser=', existingUser);
-
+        // Verify password
         const passwordsMatch = await passwordManager.compare(
             existingUser.password,
             password
