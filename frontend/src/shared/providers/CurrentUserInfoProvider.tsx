@@ -1,36 +1,35 @@
-import { createContext, ReactNode, useContext, useEffect } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 
-import { CurrentUserInfoState } from '../types';
-import useGetCurrentUserInfo from '../hooks/useGetCurrentUserInfo';
+import { CurrentUserInfoState, RequestDispatch } from '../types';
 
 interface Props {
   children: ReactNode;
+  value: ProviderValue;
 }
 
-const CurrentUserInfoStateContext =
-  createContext<CurrentUserInfoState | undefined>(undefined);
+interface ProviderValue {
+  currentUserInfoState: CurrentUserInfoState;
+  currentUserInfoDispatch: RequestDispatch;
+}
 
-const CurrentUserInfoProvider = ({ children }: Props) => {
-  const { getCurrentUserInfo, currentUserInfoState } = useGetCurrentUserInfo();
+const CurrentUserInfoContext =
+  createContext<ProviderValue | undefined>(undefined);
 
-  useEffect(() => {
-    getCurrentUserInfo();
-    // Disabling lint as getCurrentUserInfo cannot be used in the dep array
-  }, []); // eslint-disable-line
-
-  if (currentUserInfoState.loading || !currentUserInfoState.data) {
-    return <div>loading...</div>;
-  }
-
+const CurrentUserInfoProvider = ({
+  children,
+  value: { currentUserInfoState, currentUserInfoDispatch },
+}: Props) => {
   return (
-    <CurrentUserInfoStateContext.Provider value={currentUserInfoState}>
+    <CurrentUserInfoContext.Provider
+      value={{ currentUserInfoState, currentUserInfoDispatch }}
+    >
       {children}
-    </CurrentUserInfoStateContext.Provider>
+    </CurrentUserInfoContext.Provider>
   );
 };
 
 const useCurrentUserInfoContext = () => {
-  const context = useContext(CurrentUserInfoStateContext);
+  const context = useContext(CurrentUserInfoContext);
   if (context === undefined) {
     throw new Error(
       'useCurrentUserInfoContext must be used within a CurrentUserInfoProvider',

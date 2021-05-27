@@ -1,22 +1,11 @@
-import { useReducer } from 'react';
+import { RequestActionType, RequestDispatch } from '../types';
 
-import {
-  formSubmissionReducer,
-  state as initialFormSubmissionState,
-} from '../reducers/formSubmissionReducer';
-import { FormSubmissionActionType, UserPayload } from '../types';
-
-const useLogoutUser = () => {
+const useLogoutUser = (currentUserInfoDispatch: RequestDispatch) => {
   const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT as string;
 
-  const [formSubmissionState, formSubmissionDispatch] = useReducer(
-    formSubmissionReducer,
-    initialFormSubmissionState,
-  );
-
   const logoutUser = async () => {
-    formSubmissionDispatch({
-      type: FormSubmissionActionType.FORM_SUBMISSION_LOADING,
+    currentUserInfoDispatch({
+      type: RequestActionType.REQUEST_LOADING,
     });
 
     try {
@@ -27,18 +16,22 @@ const useLogoutUser = () => {
 
       const payload = await currentUserInfo.json();
 
-      formSubmissionDispatch({
-        type: FormSubmissionActionType.FORM_SUBMISSION_SUCCESS,
+      currentUserInfoDispatch({
+        type: RequestActionType.REQUEST_SUCCESS,
         payload,
       });
+
+      Promise.resolve();
     } catch (error) {
-      formSubmissionDispatch({
-        type: FormSubmissionActionType.FORM_SUBMISSION_FAILURE,
+      currentUserInfoDispatch({
+        type: RequestActionType.REQUEST_FAILURE,
       });
+
+      Promise.reject();
     }
   };
 
-  return { logoutUser, formSubmissionState };
+  return { logoutUser };
 };
 
 export default useLogoutUser;

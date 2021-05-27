@@ -1,22 +1,11 @@
-import { useReducer } from 'react';
+import { RequestActionType, UserPayload, RequestDispatch } from '../types';
 
-import {
-  formSubmissionReducer,
-  state as initialFormSubmissionState,
-} from '../reducers/formSubmissionReducer';
-import { FormSubmissionActionType, UserPayload } from '../types';
-
-const useLoginUser = () => {
+const useLoginUser = (currentUserInfoDispatch: RequestDispatch) => {
   const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT as string;
 
-  const [formSubmissionState, formSubmissionDispatch] = useReducer(
-    formSubmissionReducer,
-    initialFormSubmissionState,
-  );
-
   const loginUser = async (userPayload: UserPayload) => {
-    formSubmissionDispatch({
-      type: FormSubmissionActionType.FORM_SUBMISSION_LOADING,
+    currentUserInfoDispatch({
+      type: RequestActionType.REQUEST_LOADING,
     });
 
     try {
@@ -31,18 +20,18 @@ const useLoginUser = () => {
 
       const payload = await currentUserInfo.json();
 
-      formSubmissionDispatch({
-        type: FormSubmissionActionType.FORM_SUBMISSION_SUCCESS,
+      currentUserInfoDispatch({
+        type: RequestActionType.REQUEST_SUCCESS,
         payload,
       });
     } catch (error) {
-      formSubmissionDispatch({
-        type: FormSubmissionActionType.FORM_SUBMISSION_FAILURE,
+      currentUserInfoDispatch({
+        type: RequestActionType.REQUEST_FAILURE,
       });
     }
   };
 
-  return { loginUser, formSubmissionState };
+  return { loginUser };
 };
 
 export default useLoginUser;

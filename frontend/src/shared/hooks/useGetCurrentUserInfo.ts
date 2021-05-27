@@ -1,22 +1,11 @@
-import { useReducer } from 'react';
+import { RequestActionType, RequestDispatch } from '../types';
 
-import {
-  currentUserInfoReducer,
-  state as initialCurrentUserInfoState,
-} from '../reducers/currentUserInfoReducer';
-import { CurrentUserInfoActionType } from '../types';
-
-const useGetCurrentUserInfo = () => {
+const useGetCurrentUserInfo = (currentUserInfoDispatch: RequestDispatch) => {
   const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT as string;
-
-  const [currentUserInfoState, currentUserInfoDispatch] = useReducer(
-    currentUserInfoReducer,
-    initialCurrentUserInfoState,
-  );
 
   const getCurrentUserInfo = async () => {
     currentUserInfoDispatch({
-      type: CurrentUserInfoActionType.GET_CURRENT_USER_INFO_LOADING,
+      type: RequestActionType.REQUEST_LOADING,
     });
 
     try {
@@ -34,17 +23,17 @@ const useGetCurrentUserInfo = () => {
       const { currentUser } = await currentUserInfo.json();
 
       currentUserInfoDispatch({
-        type: CurrentUserInfoActionType.GET_CURRENT_USER_INFO_SUCCESS,
+        type: RequestActionType.REQUEST_SUCCESS,
         payload: currentUser,
       });
     } catch (error) {
       currentUserInfoDispatch({
-        type: CurrentUserInfoActionType.GET_CURRENT_USER_INFO_FAILURE,
+        type: RequestActionType.REQUEST_FAILURE,
       });
     }
   };
 
-  return { getCurrentUserInfo, currentUserInfoState };
+  return { getCurrentUserInfo };
 };
 
 export default useGetCurrentUserInfo;

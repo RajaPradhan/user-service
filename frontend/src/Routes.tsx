@@ -9,13 +9,12 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/register">
+        <Route path="/register" exact>
           <Registration />
         </Route>
-        <Route path="/login">
+        <Route path="/login" exact>
           <Login />
         </Route>
-
         <PrivateRoute path="/" exact>
           <Dashboard />
         </PrivateRoute>

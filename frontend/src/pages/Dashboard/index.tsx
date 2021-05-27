@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
 import { Typography, Grid, makeStyles } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 
-import { useCurrentUserInfoContext } from '../../shared/providers/CurrentUserInfoProvider';
 import useLogoutUser from '../../shared/hooks/useLogoutUser';
+import { useCurrentUserInfoContext } from '../../shared/providers/CurrentUserInfoProvider';
 
 const useStyles = makeStyles(() => ({
   mainContainer: {
@@ -12,6 +11,10 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'column',
     minHeight: '700px',
+
+    '& h4': {
+      paddingBottom: '40px',
+    },
   },
 }));
 
@@ -20,26 +23,24 @@ const Dashboard = () => {
 
   const history = useHistory();
 
-  const { data } = useCurrentUserInfoContext();
+  const { currentUserInfoState, currentUserInfoDispatch } =
+    useCurrentUserInfoContext();
 
-  const { logoutUser, formSubmissionState } = useLogoutUser();
+  const { logoutUser } = useLogoutUser(currentUserInfoDispatch);
 
-  useEffect(() => {
-    if (!formSubmissionState.loading && !formSubmissionState.error) {
-      history.push('/login');
-    }
-  }, [formSubmissionState]);
+  const handleLogout = async () => {
+    await logoutUser();
+    history.push('/login');
+  };
 
   return (
     <Grid container className={classes.mainContainer}>
-      <Typography>
-        <h2>{`Welcome ${data?.fullName}`}</h2>
-      </Typography>
+      <Typography variant="h4">{`Welcome ${currentUserInfoState?.data?.fullName}`}</Typography>
       <Typography variant="body1">
-        Click
-        <Link to="#" onClick={() => logoutUser()}>
+        Click{' '}
+        <Link to="#" onClick={handleLogout}>
           here
-        </Link>
+        </Link>{' '}
         to logout
       </Typography>
     </Grid>

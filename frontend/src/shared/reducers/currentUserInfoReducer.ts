@@ -1,38 +1,53 @@
+import { useReducer } from 'react';
+
 import {
   CurrentUserInfoState,
-  CurrentUserInfoAction,
-  CurrentUserInfoActionType,
+  RequestAction,
+  RequestActionType,
 } from '../types';
 
-const state: CurrentUserInfoState = {
-  data: null,
-  loading: false,
-  error: null,
+const useCurrentUserInfoReducer = () => {
+  const state: CurrentUserInfoState = {
+    data: null,
+    loading: false,
+    error: null,
+  };
+
+  const currentUserInfoReducer = (
+    state: CurrentUserInfoState,
+    action: RequestAction,
+  ) => {
+    switch (action.type) {
+      case RequestActionType.REQUEST_LOADING: {
+        return { ...state, loading: true };
+      }
+      case RequestActionType.REQUEST_SUCCESS: {
+        return { ...state, loading: false, data: action.payload };
+      }
+      case RequestActionType.REQUEST_FAILURE: {
+        return {
+          ...state,
+          loading: false,
+          data: null,
+          error: new Error('Failed to get currentUser info'),
+        };
+      }
+      default: {
+        throw new Error(`Unhandled action type: ${action.type}`);
+      }
+    }
+  };
+
+  const [currentUserInfoState, currentUserInfoDispatch] = useReducer(
+    currentUserInfoReducer,
+    state,
+  );
+
+  return {
+    currentUserInfoReducer,
+    currentUserInfoState,
+    currentUserInfoDispatch,
+  };
 };
 
-const currentUserInfoReducer = (
-  state: CurrentUserInfoState,
-  action: CurrentUserInfoAction,
-) => {
-  switch (action.type) {
-    case CurrentUserInfoActionType.GET_CURRENT_USER_INFO_LOADING: {
-      return { ...state, loading: true };
-    }
-    case CurrentUserInfoActionType.GET_CURRENT_USER_INFO_SUCCESS: {
-      return { ...state, loading: false, data: action.payload };
-    }
-    case CurrentUserInfoActionType.GET_CURRENT_USER_INFO_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        data: null,
-        error: new Error('Failed to get currentUser info'),
-      };
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
-    }
-  }
-};
-
-export { currentUserInfoReducer, state };
+export default useCurrentUserInfoReducer;

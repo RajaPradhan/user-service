@@ -6,6 +6,7 @@ import FormContainer from '../../shared/components/FormContainer';
 import LoginForm from './LoginForm';
 import { UserPayload } from '../../shared/types';
 import useLoginUser from '../../shared/hooks/useLoginUser';
+import { useCurrentUserInfoContext } from '../../shared/providers/CurrentUserInfoProvider';
 
 const useStyles = makeStyles(() => ({
   mainContainer: {
@@ -21,13 +22,16 @@ const Login = () => {
 
   const history = useHistory();
 
-  const { loginUser, formSubmissionState } = useLoginUser();
+  const { currentUserInfoState, currentUserInfoDispatch } =
+    useCurrentUserInfoContext();
+
+  const { loginUser } = useLoginUser(currentUserInfoDispatch);
 
   useEffect(() => {
-    if (!formSubmissionState.loading && formSubmissionState.data) {
+    if (!currentUserInfoState.loading && currentUserInfoState?.data?.email) {
       history.push('/');
     }
-  }, [formSubmissionState]);
+  }, [currentUserInfoState, history]);
 
   return (
     <Grid container className={classes.mainContainer}>
