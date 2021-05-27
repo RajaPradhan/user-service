@@ -7,7 +7,7 @@ import { UserPayload } from '../lib/types';
 const router = express.Router();
 
 router.get('/api/users/currentuser', (req: Request, res: Response) => {
-    let currentUser: UserPayload | null = null;
+    let currentUser: UserPayload | {} = {};
 
     if (req.session && req.session.jwt) {
         try {

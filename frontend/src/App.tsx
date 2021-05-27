@@ -1,8 +1,8 @@
-import React from 'react';
 import { ThemeProvider } from '@material-ui/core';
 
 import { useTheme } from 'shared/theme';
 import Layout from 'shared/components/Layout';
+import { CurrentUserInfoProvider } from 'shared/providers/CurrentUserInfoProvider';
 import Routes from './Routes';
 
 const App = () => {
@@ -11,7 +11,9 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <Routes />
+        <CurrentUserInfoProvider>
+          <Routes />
+        </CurrentUserInfoProvider>
       </Layout>
     </ThemeProvider>
   );

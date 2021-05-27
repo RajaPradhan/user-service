@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import { json } from 'body-parser';
@@ -16,12 +16,19 @@ import {
 const app = express();
 app.set('trust proxy', true);
 
-app.use(cors());
+// For local development
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
 app.use(json());
 app.use(
     cookieSession({
         signed: false,
-        secure: false
+        secure: process.env.NODE_ENV === 'production'
     })
 );
 

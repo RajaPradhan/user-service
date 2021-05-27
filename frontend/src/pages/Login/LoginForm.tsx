@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -7,6 +8,8 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
+
+import { UserPayload } from '../../shared/types';
 
 const useStyles = makeStyles(() => ({
   formContainer: {
@@ -27,9 +30,17 @@ const useStyles = makeStyles(() => ({
       textTransform: 'none',
     },
   },
+  linkContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 
-const LoginForm = () => {
+interface Props {
+  onSubmit(formData: UserPayload): void;
+}
+
+const LoginForm = ({ onSubmit }: Props) => {
   const classes = useStyles();
 
   const validationSchema = yup.object().shape({
@@ -52,9 +63,7 @@ const LoginForm = () => {
       password: '',
     },
     validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit,
   });
 
   return (
@@ -103,6 +112,11 @@ const LoginForm = () => {
           </Button>
         </Grid>
       </form>
+      <Grid item xs={12} className={classes.linkContainer}>
+        <Typography>
+          Not registered yet? Register <Link to="/register">here</Link>
+        </Typography>
+      </Grid>
     </Grid>
   );
 };

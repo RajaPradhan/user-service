@@ -15,6 +15,7 @@ const Routes = () => {
         <Route path="/login">
           <Login />
         </Route>
+
         <PrivateRoute path="/" exact>
           <Dashboard />
         </PrivateRoute>

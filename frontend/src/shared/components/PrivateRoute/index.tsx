@@ -1,21 +1,14 @@
-import { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import useGetCurrentUserInfo from '../../hooks/useGetCurrentUserInfo';
+import { useCurrentUserInfoContext } from '../../providers/CurrentUserInfoProvider';
 
 const PrivateRoute = ({ children, ...rest }: any) => {
-  const { getCurrentUserInfo, currentUserInfoState } = useGetCurrentUserInfo();
-
-  useEffect(() => {
-    // getCurrentUserInfo();
-  }, [getCurrentUserInfo]);
+  const { data } = useCurrentUserInfoContext();
 
   return (
     <Route
       {...rest}
-      render={() => {
-        return currentUserInfoState.data ? children : <Redirect to="/login" />;
-      }}
+      render={() => (data?.email ? children : <Redirect to="/login" />)}
     />
   );
 };
