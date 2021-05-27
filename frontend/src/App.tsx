@@ -3,6 +3,7 @@ import { ThemeProvider } from '@material-ui/core';
 
 import { useTheme } from 'shared/theme';
 import Layout from 'shared/components/Layout';
+import Loader from 'shared/components/Loader';
 import { CurrentUserInfoProvider } from 'shared/providers/CurrentUserInfoProvider';
 import useGetCurrentUserInfo from 'shared/hooks/useGetCurrentUserInfo';
 import currentUserInfoReducer from 'shared/reducers/currentUserInfoReducer';
@@ -21,17 +22,17 @@ const App = () => {
     // Disabling lint as getCurrentUserInfo cannot be used in the dep array
   }, [currentUserInfoDispatch]); // eslint-disable-line
 
-  if (currentUserInfoState.loading || !currentUserInfoState.data) {
-    return <div>loading...</div>;
-  }
-  debugger;
   return (
     <ThemeProvider theme={theme}>
       <Layout>
         <CurrentUserInfoProvider
           value={{ currentUserInfoState, currentUserInfoDispatch }}
         >
-          <Routes />
+          {currentUserInfoState.loading || !currentUserInfoState.data ? (
+            <Loader />
+          ) : (
+            <Routes />
+          )}
         </CurrentUserInfoProvider>
       </Layout>
     </ThemeProvider>

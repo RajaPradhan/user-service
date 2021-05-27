@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import FormContainer from '../../shared/components/FormContainer';
 import LoginForm from './LoginForm';
 import { UserPayload } from '../../shared/types';
+import Loader from '../../shared/components/Loader';
 import useLoginUser from '../../shared/hooks/useLoginUser';
 import { useCurrentUserInfoContext } from '../../shared/providers/CurrentUserInfoProvider';
 
@@ -35,6 +36,7 @@ const Login = () => {
 
   return (
     <Grid container className={classes.mainContainer}>
+      {currentUserInfoState.loading && <Loader overlay={true} />}
       <FormContainer errors={[]}>
         <LoginForm
           onSubmit={(userPayload: UserPayload) => loginUser(userPayload)}

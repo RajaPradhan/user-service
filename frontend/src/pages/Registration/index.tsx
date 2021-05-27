@@ -6,6 +6,7 @@ import FormContainer from '../../shared/components/FormContainer';
 import RegistrationForm from './RegistrationForm';
 import { UserPayload } from '../../shared/types';
 import useRegisterUser from '../../shared/hooks/useRegisterUser';
+import Loader from '../../shared/components/Loader';
 import { useCurrentUserInfoContext } from '../../shared/providers/CurrentUserInfoProvider';
 
 const useStyles = makeStyles(() => ({
@@ -35,6 +36,7 @@ const Registration = () => {
 
   return (
     <Grid container className={classes.mainContainer}>
+      {currentUserInfoState.loading && <Loader overlay={true} />}
       <FormContainer errors={[]}>
         <RegistrationForm
           onSubmit={(userPayload: UserPayload) => registerUser(userPayload)}
