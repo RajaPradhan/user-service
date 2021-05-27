@@ -102,12 +102,7 @@ const LoginForm = ({ onSubmit }: Props) => {
           <Button color="primary" variant="outlined" type="reset">
             <Typography variant="body1">Reset</Typography>
           </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            type="submit"
-            disabled={!(formik.isValid && formik.dirty)}
-          >
+          <Button color="primary" variant="contained" type="submit">
             <Typography variant="body1">Log in</Typography>
           </Button>
         </Grid>
