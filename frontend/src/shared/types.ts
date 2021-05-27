@@ -4,10 +4,15 @@ export interface CurrentUserInfo {
   email: string;
 }
 
+export interface ValidationError {
+  message: string;
+  field?: string;
+}
+
 export interface CurrentUserInfoState {
   data: CurrentUserInfo | null;
   loading: boolean;
-  error: Error | null;
+  error: ValidationError[] | null;
 }
 
 export enum RequestActionType {

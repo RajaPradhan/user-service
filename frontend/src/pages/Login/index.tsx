@@ -37,7 +37,7 @@ const Login = () => {
   return (
     <Grid container className={classes.mainContainer}>
       {currentUserInfoState.loading && <Loader overlay={true} />}
-      <FormContainer errors={[]}>
+      <FormContainer errors={currentUserInfoState.error}>
         <LoginForm
           onSubmit={(userPayload: UserPayload) => loginUser(userPayload)}
         />

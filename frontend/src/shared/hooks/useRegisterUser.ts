@@ -8,6 +8,8 @@ const useRegisterUser = (currentUserInfoDispatch: RequestDispatch) => {
       type: RequestActionType.REQUEST_LOADING,
     });
 
+    let response: any;
+
     try {
       const currentUserInfo = await fetch(
         `${API_ENDPOINT}/api/users/register`,
@@ -21,12 +23,19 @@ const useRegisterUser = (currentUserInfoDispatch: RequestDispatch) => {
         },
       );
 
-      const payload = await currentUserInfo.json();
+      response = await currentUserInfo.json();
 
-      currentUserInfoDispatch({
-        type: RequestActionType.REQUEST_SUCCESS,
-        payload,
-      });
+      if (response.errors) {
+        currentUserInfoDispatch({
+          type: RequestActionType.REQUEST_FAILURE,
+          payload: response.errors,
+        });
+      } else {
+        currentUserInfoDispatch({
+          type: RequestActionType.REQUEST_SUCCESS,
+          payload: response,
+        });
+      }
     } catch (error) {
       currentUserInfoDispatch({
         type: RequestActionType.REQUEST_FAILURE,

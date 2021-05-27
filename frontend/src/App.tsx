@@ -28,7 +28,8 @@ const App = () => {
         <CurrentUserInfoProvider
           value={{ currentUserInfoState, currentUserInfoDispatch }}
         >
-          {currentUserInfoState.loading || !currentUserInfoState.data ? (
+          {currentUserInfoState.loading ||
+          (!currentUserInfoState.data && !currentUserInfoState.error) ? (
             <Loader />
           ) : (
             <Routes />

@@ -8,6 +8,8 @@ const useLoginUser = (currentUserInfoDispatch: RequestDispatch) => {
       type: RequestActionType.REQUEST_LOADING,
     });
 
+    let response: any;
+
     try {
       const currentUserInfo = await fetch(`${API_ENDPOINT}/api/users/login`, {
         method: 'post',
@@ -18,15 +20,24 @@ const useLoginUser = (currentUserInfoDispatch: RequestDispatch) => {
         body: JSON.stringify(userPayload),
       });
 
-      const payload = await currentUserInfo.json();
+      response = await currentUserInfo.json();
+      console.log('response =', response);
 
-      currentUserInfoDispatch({
-        type: RequestActionType.REQUEST_SUCCESS,
-        payload,
-      });
+      if (response.errors) {
+        currentUserInfoDispatch({
+          type: RequestActionType.REQUEST_FAILURE,
+          payload: response.errors,
+        });
+      } else {
+        currentUserInfoDispatch({
+          type: RequestActionType.REQUEST_SUCCESS,
+          payload: response,
+        });
+      }
     } catch (error) {
       currentUserInfoDispatch({
         type: RequestActionType.REQUEST_FAILURE,
+        payload: [{ message: 'Something went wrong' }],
       });
     }
   };

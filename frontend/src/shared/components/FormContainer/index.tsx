@@ -1,4 +1,7 @@
-import { Card, Grid, makeStyles } from '@material-ui/core';
+import { Card, Grid, makeStyles, Typography } from '@material-ui/core';
+import { themeVariables } from 'shared/theme';
+
+import { ValidationError } from '../../types';
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -17,12 +20,15 @@ const useStyles = makeStyles(() => ({
       borderRadius: '50%',
     },
   },
-  errorsContainer: {},
+  errorsContainer: {
+    paddingLeft: '20px',
+    color: themeVariables.colors.red,
+  },
 }));
 
 interface Props {
   children: JSX.Element;
-  errors: [] | null;
+  errors: ValidationError[] | null;
 }
 
 const FormContainer = ({ children, errors }: Props) => {
@@ -38,8 +44,10 @@ const FormContainer = ({ children, errors }: Props) => {
         </Grid>
         <Grid item xs={12} className={classes.errorsContainer}>
           <ul>
-            {errors?.map((error: any) => (
-              <li>{error.message}</li>
+            {errors?.map((error: ValidationError) => (
+              <li>
+                <Typography variant="body1">{error.message}</Typography>
+              </li>
             ))}
           </ul>
         </Grid>

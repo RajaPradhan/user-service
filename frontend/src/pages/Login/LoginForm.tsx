@@ -44,17 +44,8 @@ const LoginForm = ({ onSubmit }: Props) => {
   const classes = useStyles();
 
   const validationSchema = yup.object().shape({
-    email: yup
-      .string()
-      .required('Email is required')
-      .email('Email must be valid'),
-    password: yup
-      .string()
-      .required('Password is required')
-      .matches(
-        /^(?=\D*\d)\S{8,}$/,
-        'Password must be atleast 8 characters and must contain atleast a digit and a character',
-      ),
+    email: yup.string().required('Email is required'),
+    password: yup.string().required('Password is required'),
   });
 
   const formik = useFormik({
