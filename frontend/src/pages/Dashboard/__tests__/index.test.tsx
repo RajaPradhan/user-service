@@ -1,4 +1,4 @@
-import { waitFor } from '@testing-library/dom';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import render, { history } from '../../../shared/testUtils/setup';

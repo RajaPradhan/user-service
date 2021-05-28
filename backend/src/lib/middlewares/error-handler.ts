@@ -5,7 +5,7 @@ export const errorHandler = (
     err: Error,
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction // eslint-disable-line
 ) => {
     if (err instanceof CustomError) {
         return res
