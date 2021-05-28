@@ -44,7 +44,10 @@ const LoginForm = ({ onSubmit }: Props) => {
   const classes = useStyles();
 
   const validationSchema = yup.object().shape({
-    email: yup.string().required('Email is required'),
+    email: yup
+      .string()
+      .required('Email is required')
+      .email('Email must be valid'),
     password: yup.string().required('Password is required'),
   });
 
@@ -109,6 +112,7 @@ const LoginForm = ({ onSubmit }: Props) => {
             variant="contained"
             type="submit"
             data-testid="submit-btn"
+            disabled={!(formik.isValid && formik.dirty)}
           >
             <Typography variant="body1">Log in</Typography>
           </Button>

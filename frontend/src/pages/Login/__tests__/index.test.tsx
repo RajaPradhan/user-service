@@ -12,21 +12,30 @@ describe('Tests for Login page', () => {
     expect(container.querySelector(Selectors.LOGIN_FORM)).toBeInTheDocument();
   });
 
-  it('should show required field validation messages', async () => {
+  it('should show field validation messages', async () => {
     history.push('/login');
     const { container } = render();
 
     expect(container.querySelector(Selectors.LOGIN_FORM)).toBeInTheDocument();
 
-    userEvent.click(
-      container.querySelector(Selectors.SUBMIT_BUTTON) as Element,
+    expect(container.querySelector(Selectors.SUBMIT_BUTTON)).toBeDisabled();
+
+    userEvent.type(
+      container.querySelector(Selectors.EMAIL_INPUT_FIELD) as Element,
+      'test',
     );
+
+    userEvent.tab();
 
     await waitFor(() =>
       expect(
         container.querySelector(Selectors.EMAIL_INPUT_FIELD_VALIDATION_MSG),
-      ).toHaveTextContent('Email is required'),
+      ).toHaveTextContent('Email must be valid'),
     );
+
+    // Hit tab twice to simulate skip filling password - expect to show validation message
+    userEvent.tab();
+    userEvent.tab();
 
     await waitFor(() =>
       expect(
