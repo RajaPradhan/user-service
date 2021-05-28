@@ -51,5 +51,7 @@ describe('Tests for user login', () => {
             .expect(200);
 
         expect(response.get('Set-Cookie')).toBeDefined();
+
+        return response;
     });
 });
