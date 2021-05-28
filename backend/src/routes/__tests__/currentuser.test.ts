@@ -3,7 +3,7 @@ import request from 'supertest';
 import { app } from '../../app';
 
 describe('Tests for fetching currentuser info', () => {
-    it('should return a 200 with user info', async () => {
+    it('should return a 200 with user info when a valid cookie is passed', async () => {
         // register a user before testing fetching the user info
         const response = await request(app)
             .post('/api/users/register')
@@ -31,7 +31,7 @@ describe('Tests for fetching currentuser info', () => {
             );
     });
 
-    it('should return null user when a valid cookie is not passed', async () => {
+    it('should return empty user when a valid cookie is not passed', async () => {
         return await request(app)
             .get('/api/users/currentuser')
             .expect(200)
