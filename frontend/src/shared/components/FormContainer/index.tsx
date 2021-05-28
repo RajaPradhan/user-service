@@ -40,12 +40,12 @@ const FormContainer = ({ children, errors }: Props) => {
     <Card className={classes.card}>
       <Grid container>
         <Grid item xs={12} className={classes.profilePhoto}>
-          <img src={photo} alt="profile-pic" />
+          <img src={photo} alt="profile-pic" data-testid="profile-pic" />
         </Grid>
         <Grid item xs={12} className={classes.errorsContainer}>
           <ul>
             {errors?.map((error: ValidationError) => (
-              <li>
+              <li key={error.message}>
                 <Typography variant="body1">{error.message}</Typography>
               </li>
             ))}

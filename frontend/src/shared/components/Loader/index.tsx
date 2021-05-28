@@ -40,7 +40,7 @@ const Loader = (props: Props) => {
       })}
     >
       <Grid item xs={12}>
-        <CircularProgress />
+        <CircularProgress data-testid="loader" />
       </Grid>
       <Grid item xs={12}>
         <Typography>Loading...</Typography>

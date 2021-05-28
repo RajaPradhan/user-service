@@ -1,6 +1,9 @@
 enum Selectors {
   LOADER = 'loader',
+  COMPANY_LOGO = 'company-logo',
   WELCOME_MESSAGE = "[data-testid='welcome-msg']",
+  LAYOUT_CHILD = 'layout-child',
+  PROFILE_PIC = 'profile-pic',
   LOGOUT_LINK = "[data-testid='logout-link']",
   LOGIN_FORM = "[data-testid='login-form']",
   EMAIL_INPUT_FIELD = "[data-testid='email'] input[id='email']",
