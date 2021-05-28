@@ -16,7 +16,7 @@ const validationRules = [
     body('email').isEmail().withMessage('Email must be valid'),
     body('password')
         .trim()
-        .matches(/^(?=\D*\d)\S{8,}$/)
+        .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
         .withMessage(
             'Password must be atleast 8 characters and must contain atleast a digit and a character'
         )

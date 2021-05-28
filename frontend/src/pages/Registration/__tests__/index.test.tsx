@@ -65,6 +65,76 @@ describe('Tests for Registration page', () => {
     );
   });
 
+  it('should test all cases for password regex', async () => {
+    const { container } = renderedApp;
+
+    expect(
+      container.querySelector(Selectors.REGISTRATION_FORM),
+    ).toBeInTheDocument();
+
+    // less than 8 characters - error
+    userEvent.type(
+      container.querySelector(Selectors.PASSWORD_INPUT_FIELD) as Element,
+      'test',
+    );
+
+    userEvent.tab();
+
+    await waitFor(() =>
+      expect(
+        container.querySelector(Selectors.PASSWORD_INPUT_FIELD_VALIDATION_MSG),
+      ).toHaveTextContent(
+        'Password must be atleast 8 characters and must contain atleast a digit and a character',
+      ),
+    );
+
+    // all letters no digit - error
+    userEvent.type(
+      container.querySelector(Selectors.PASSWORD_INPUT_FIELD) as Element,
+      'testpassword',
+    );
+
+    userEvent.tab();
+
+    await waitFor(() =>
+      expect(
+        container.querySelector(Selectors.PASSWORD_INPUT_FIELD_VALIDATION_MSG),
+      ).toHaveTextContent(
+        'Password must be atleast 8 characters and must contain atleast a digit and a character',
+      ),
+    );
+
+    // all digits no letter - error
+    userEvent.type(
+      container.querySelector(Selectors.PASSWORD_INPUT_FIELD) as Element,
+      '123456789',
+    );
+
+    userEvent.tab();
+
+    await waitFor(() =>
+      expect(
+        container.querySelector(Selectors.PASSWORD_INPUT_FIELD_VALIDATION_MSG),
+      ).toHaveTextContent(
+        'Password must be atleast 8 characters and must contain atleast a digit and a character',
+      ),
+    );
+
+    // valid password - min 8 char and atleast a digit and a char
+    userEvent.type(
+      container.querySelector(Selectors.PASSWORD_INPUT_FIELD) as Element,
+      'passw0rd123',
+    );
+
+    userEvent.tab();
+
+    await waitFor(() =>
+      expect(
+        container.querySelector(Selectors.PASSWORD_INPUT_FIELD_VALIDATION_MSG),
+      ).not.toBeInTheDocument(),
+    );
+  });
+
   it('should successfully register user', async () => {
     const { container } = renderedApp;
 
