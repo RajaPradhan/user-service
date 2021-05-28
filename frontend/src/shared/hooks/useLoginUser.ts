@@ -1,7 +1,10 @@
 import { RequestActionType, UserPayload, RequestDispatch } from '../types';
+import useNotification from '../hooks/useNotification';
 
 const useLoginUser = (currentUserInfoDispatch: RequestDispatch) => {
   const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT as string;
+
+  const notification = useNotification();
 
   const loginUser = async (userPayload: UserPayload) => {
     currentUserInfoDispatch({
@@ -23,6 +26,11 @@ const useLoginUser = (currentUserInfoDispatch: RequestDispatch) => {
       response = await currentUserInfo.json();
 
       if (response.errors) {
+        notification({
+          message: response.errors[0].message,
+          variant: 'error',
+        });
+
         currentUserInfoDispatch({
           type: RequestActionType.REQUEST_FAILURE,
           payload: response.errors,

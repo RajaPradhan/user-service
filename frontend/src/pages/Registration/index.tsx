@@ -37,7 +37,7 @@ const Registration = () => {
   return (
     <Grid container className={classes.mainContainer}>
       {currentUserInfoState.loading && <Loader overlay={true} />}
-      <FormContainer errors={currentUserInfoState.error}>
+      <FormContainer>
         <RegistrationForm
           onSubmit={(userPayload: UserPayload) => registerUser(userPayload)}
         />

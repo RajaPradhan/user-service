@@ -7,6 +7,7 @@ import mockTheme from './mockTheme';
 import { CurrentUserInfoProvider } from '../../shared/providers/CurrentUserInfoProvider';
 import currentUserInfoReducer from '../../shared/reducers/currentUserInfoReducer';
 import PrivateRoute from '../../shared/components/PrivateRoute';
+import Layout from '../../shared/components/Layout';
 import Registration from '../../pages/Registration';
 import Login from '../../pages/Login';
 import Dashboard from '../../pages/Dashboard';
@@ -19,26 +20,28 @@ const App = () => {
 
   return (
     <ThemeProvider theme={mockTheme}>
-      <CurrentUserInfoProvider
-        value={{
-          currentUserInfoState,
-          currentUserInfoDispatch,
-        }}
-      >
-        <Router history={history}>
-          <Switch>
-            <Route path="/register" exact>
-              <Registration />
-            </Route>
-            <Route path="/login" exact>
-              <Login />
-            </Route>
-            <PrivateRoute path="/" exact>
-              <Dashboard />
-            </PrivateRoute>
-          </Switch>
-        </Router>
-      </CurrentUserInfoProvider>
+      <Layout>
+        <CurrentUserInfoProvider
+          value={{
+            currentUserInfoState,
+            currentUserInfoDispatch,
+          }}
+        >
+          <Router history={history}>
+            <Switch>
+              <Route path="/register" exact>
+                <Registration />
+              </Route>
+              <Route path="/login" exact>
+                <Login />
+              </Route>
+              <PrivateRoute path="/" exact>
+                <Dashboard />
+              </PrivateRoute>
+            </Switch>
+          </Router>
+        </CurrentUserInfoProvider>
+      </Layout>
     </ThemeProvider>
   );
 };
