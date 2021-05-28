@@ -1,5 +1,6 @@
 import express from 'express';
 import 'express-async-errors';
+import dotenv from 'dotenv';
 import cors from 'cors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
@@ -13,12 +14,14 @@ import {
     currentUserRouter
 } from './routes';
 
+dotenv.config();
+
 const app = express();
 app.set('trust proxy', true);
 
 // For local development
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.REACT_APP_ORIGIN,
     credentials: true,
     optionsSuccessStatus: 204
 };
