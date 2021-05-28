@@ -35,10 +35,13 @@ const Dashboard = () => {
 
   return (
     <Grid container className={classes.mainContainer}>
-      <Typography variant="h4">{`Welcome ${currentUserInfoState?.data?.fullName}`}</Typography>
+      <Typography
+        variant="h4"
+        data-testid="welcome-msg"
+      >{`Welcome ${currentUserInfoState?.data?.fullName}`}</Typography>
       <Typography variant="body1">
         Click{' '}
-        <Link to="#" onClick={handleLogout}>
+        <Link to="#" onClick={handleLogout} data-testid="logout-link">
           here
         </Link>{' '}
         to logout

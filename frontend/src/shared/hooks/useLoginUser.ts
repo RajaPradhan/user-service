@@ -21,7 +21,6 @@ const useLoginUser = (currentUserInfoDispatch: RequestDispatch) => {
       });
 
       response = await currentUserInfo.json();
-      console.log('response =', response);
 
       if (response.errors) {
         currentUserInfoDispatch({

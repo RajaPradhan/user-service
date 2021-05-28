@@ -59,13 +59,18 @@ const LoginForm = ({ onSubmit }: Props) => {
 
   return (
     <Grid container className={classes.formContainer}>
-      <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
+      <form
+        onSubmit={formik.handleSubmit}
+        onReset={formik.handleReset}
+        data-testid="login-form"
+      >
         <Grid item xs={12} className={classes.formFieldContainer}>
           <TextField
             fullWidth
             id="email"
             name="email"
             label="Email"
+            data-testid="email"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -81,6 +86,7 @@ const LoginForm = ({ onSubmit }: Props) => {
             name="password"
             label="Password"
             type="password"
+            data-testid="password"
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -90,10 +96,20 @@ const LoginForm = ({ onSubmit }: Props) => {
         </Grid>
 
         <Grid item xs={12} className={classes.actionButtonContainer}>
-          <Button color="primary" variant="outlined" type="reset">
+          <Button
+            color="primary"
+            variant="outlined"
+            type="reset"
+            data-testid="reset-btn"
+          >
             <Typography variant="body1">Reset</Typography>
           </Button>
-          <Button color="primary" variant="contained" type="submit">
+          <Button
+            color="primary"
+            variant="contained"
+            type="submit"
+            data-testid="submit-btn"
+          >
             <Typography variant="body1">Log in</Typography>
           </Button>
         </Grid>

@@ -25,7 +25,6 @@ const useCurrentUserInfoReducer = () => {
         return { ...state, loading: false, data: action.payload };
       }
       case RequestActionType.REQUEST_FAILURE: {
-        console.log('action.payload=', action.payload);
         return {
           ...state,
           loading: false,

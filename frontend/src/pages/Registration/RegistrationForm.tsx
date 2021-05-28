@@ -73,13 +73,18 @@ const RegistrationForm = ({ onSubmit }: Props) => {
 
   return (
     <Grid container className={classes.formContainer}>
-      <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
+      <form
+        onSubmit={formik.handleSubmit}
+        onReset={formik.handleReset}
+        data-testid="registration-form"
+      >
         <Grid item xs={12} className={classes.formFieldContainer}>
           <TextField
             fullWidth
             id="fullName"
             name="fullName"
             label="Full name"
+            data-testid="fullName"
             value={formik.values.fullName}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -94,6 +99,7 @@ const RegistrationForm = ({ onSubmit }: Props) => {
             id="email"
             name="email"
             label="Email"
+            data-testid="email"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -108,6 +114,7 @@ const RegistrationForm = ({ onSubmit }: Props) => {
             id="password"
             name="password"
             label="Password"
+            data-testid="password"
             type="password"
             value={formik.values.password}
             onChange={formik.handleChange}
@@ -118,7 +125,12 @@ const RegistrationForm = ({ onSubmit }: Props) => {
         </Grid>
 
         <Grid item xs={12} className={classes.actionButtonContainer}>
-          <Button color="primary" variant="outlined" type="reset">
+          <Button
+            color="primary"
+            variant="outlined"
+            type="reset"
+            data-testid="reset-btn"
+          >
             <Typography variant="body1">Reset</Typography>
           </Button>
           <Button
@@ -126,6 +138,7 @@ const RegistrationForm = ({ onSubmit }: Props) => {
             variant="contained"
             type="submit"
             disabled={!(formik.isValid && formik.dirty)}
+            data-testid="submit-btn"
           >
             <Typography variant="body1">Register</Typography>
           </Button>
