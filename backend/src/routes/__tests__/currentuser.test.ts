@@ -35,6 +35,6 @@ describe('Tests for fetching currentuser info', () => {
         return await request(app)
             .get('/api/users/currentuser')
             .expect(200)
-            .expect(res => expect(res.body.currentUser).toBeNull());
+            .expect(res => expect(res.body.currentUser).toEqual({}));
     });
 });
