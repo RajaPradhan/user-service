@@ -32,6 +32,10 @@ A user management service with user registration, login, logout and session hand
 - **Component styling** : CSS-in-JS solution of material-ui is used
 - **Linting & Formatting** : Uses the default ESLint config of CRA. Prettier for code formatting. husky and lint-staged are used as auxiliary library
 
+## Browser compatibility
+
+The application works as expected and is tested with latest versions of Chrome and Firefox. Safari has a known bug with cookie handling in older versions. For more info please refer: https://www.chromium.org/updates/same-site/incompatible-clients
+
 ## REST APIs
 
 ```
