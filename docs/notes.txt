@@ -8,7 +8,6 @@ Routes:
 .env variables (BE):
 --------------------
 process.env.JWT_KEY
-process.env.EXPRESS_APP_PORT
 process.env.REACT_APP_ORIGIN
 
 process.env.DB_HOST

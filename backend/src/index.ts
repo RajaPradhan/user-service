@@ -14,10 +14,10 @@ import { typeOrmConfig } from './typeormconfig';
 
         console.log('Connected to Postgres DB');
 
-        app.listen(process.env.EXPRESS_APP_PORT, () => {
-            console.log(
-                `Server listening on port ${process.env.EXPRESS_APP_PORT}`
-            );
+        const PORT = process.env.PORT || 5000;
+
+        app.listen(PORT, () => {
+            console.log(`Server listening on port ${PORT}`);
         });
     } catch (err) {
         console.error(err);
