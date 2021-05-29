@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
-import FormContainer from '../../shared/components/FormContainer';
+import { FormContainer, Loader } from '../../shared/components';
 import LoginForm from './LoginForm';
 import { UserPayload } from '../../shared/types';
-import Loader from '../../shared/components/Loader';
 import useLoginUser from '../../shared/hooks/useLoginUser';
 import { useCurrentUserInfoContext } from '../../shared/providers/CurrentUserInfoProvider';
 

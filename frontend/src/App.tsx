@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { ThemeProvider } from '@material-ui/core';
 
-import { useTheme } from 'shared/theme';
-import Layout from 'shared/components/Layout';
-import Loader from 'shared/components/Loader';
-import { CurrentUserInfoProvider } from 'shared/providers/CurrentUserInfoProvider';
-import useGetCurrentUserInfo from 'shared/hooks/useGetCurrentUserInfo';
-import currentUserInfoReducer from 'shared/reducers/currentUserInfoReducer';
+import { useTheme } from './shared/theme';
+import { Layout, Loader } from './shared/components';
+import { CurrentUserInfoProvider } from './shared/providers/CurrentUserInfoProvider';
+import useGetCurrentUserInfo from './shared/hooks/useGetCurrentUserInfo';
+import currentUserInfoReducer from './shared/reducers/currentUserInfoReducer';
 import Routes from './Routes';
 
 const App = () => {
