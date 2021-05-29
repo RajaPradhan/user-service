@@ -5,8 +5,8 @@ Routes:
 /api/users/logout
 /api/users/currentuser
 
-.env variables:
----------------
+.env variables (BE):
+--------------------
 process.env.JWT_KEY
 process.env.EXPRESS_APP_PORT
 process.env.REACT_APP_ORIGIN
@@ -16,3 +16,7 @@ process.env.DB_PORT
 process.env.DB_DATABASE
 process.env.DB_USERNAME
 process.env.DB_PASSWORD
+
+.env variables (FE):
+--------------------
+process.env.REACT_APP_API_ENDPOINT

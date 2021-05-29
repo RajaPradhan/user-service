@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppBar, makeStyles, Typography, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({

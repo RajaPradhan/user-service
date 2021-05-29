@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 import { SnackbarProvider } from 'notistack'; // provides an imperative API to show notification from any place
 
@@ -19,7 +18,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface Props {
-  children: ReactNode;
+  children: JSX.Element;
 }
 
 const Layout = ({ children }: Props) => {
