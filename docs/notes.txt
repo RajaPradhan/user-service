@@ -20,3 +20,7 @@ process.env.DB_PASSWORD
 .env variables (FE):
 --------------------
 process.env.REACT_APP_API_ENDPOINT
+
+.env variables (Heroku)
+-----------------------
+process.env.DATABASE_URL

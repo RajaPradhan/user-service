@@ -2,16 +2,27 @@ import { ConnectionOptions } from 'typeorm';
 
 import { User } from './models';
 
-const typeOrmConfig: ConnectionOptions = {
+let typeOrmConfig: ConnectionOptions = {
     type: 'postgres',
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    database: process.env.DB_DATABASE,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
     synchronize: true,
     logging: false,
     entities: [User]
 };
+
+if (process.env.NODE_ENV === 'production') {
+    typeOrmConfig = {
+        ...typeOrmConfig,
+        url: process.env.DATABASE_URL // Obtained from Heroku env variable
+    };
+} else {
+    typeOrmConfig = {
+        ...typeOrmConfig,
+        host: process.env.DB_HOST,
+        port: Number(process.env.DB_PORT),
+        database: process.env.DB_DATABASE,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD
+    };
+}
 
 export { typeOrmConfig };
