@@ -2,15 +2,20 @@ import express, { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 import { BadRequestError } from '../lib/errors';
-import { UserManagerService, PasswordManagerService } from '../services';
+import {
+    UserManager,
+    UserManagerService,
+    PasswordManager,
+    PasswordManagerService
+} from '../services';
 
 const router = express.Router();
 
 router.post('/api/users/login', async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    const userManager = new UserManagerService();
-    const passwordManager = new PasswordManagerService();
+    const userManager: UserManager = new UserManagerService();
+    const passwordManager: PasswordManager = new PasswordManagerService();
 
     // Verify email
     const existingUser = await userManager.findUserByEmail(email);

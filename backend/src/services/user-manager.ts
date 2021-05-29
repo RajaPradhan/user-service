@@ -6,7 +6,7 @@ import { UserPayload } from '../lib/types';
 /**
  * Provides an abstraction for all user operations
  */
-interface UserManager {
+export interface UserManager {
     isExistingEmail(email: string): Promise<boolean>;
     createUser(
         fullName: string,

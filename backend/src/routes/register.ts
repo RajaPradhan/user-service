@@ -4,7 +4,12 @@ import jwt from 'jsonwebtoken';
 
 import { validateRequest } from '../lib/middlewares';
 import { BadRequestError } from '../lib/errors';
-import { UserManagerService, PasswordManagerService } from '../services';
+import {
+    UserManager,
+    UserManagerService,
+    PasswordManager,
+    PasswordManagerService
+} from '../services';
 
 const router = express.Router();
 
@@ -29,8 +34,8 @@ router.post(
     async (req: Request, res: Response) => {
         const { fullName, email, password } = req.body;
 
-        const userManager = new UserManagerService();
-        const passwordManager = new PasswordManagerService();
+        const userManager: UserManager = new UserManagerService();
+        const passwordManager: PasswordManager = new PasswordManagerService();
 
         // Reject the request if email is already in use
         const isExistingEmail = await userManager.isExistingEmail(email);

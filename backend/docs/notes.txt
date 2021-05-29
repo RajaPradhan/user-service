@@ -1,9 +1,18 @@
 Routes:
+-------
 /api/users/register
 /api/users/login
 /api/users/logout
 /api/users/currentuser
 
-Database:
-Postgres
-TypeORM
+.env variables:
+---------------
+process.env.JWT_KEY
+process.env.EXPRESS_APP_PORT
+process.env.REACT_APP_ORIGIN
+
+process.env.DB_HOST
+process.env.DB_PORT
+process.env.DB_DATABASE
+process.env.DB_USERNAME
+process.env.DB_PASSWORD

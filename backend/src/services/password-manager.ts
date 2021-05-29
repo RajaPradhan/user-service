@@ -1,8 +1,8 @@
 import { scrypt, randomBytes } from 'crypto';
 import { promisify } from 'util';
 
-interface PasswordManager {
-    toHash(password: string): Promise<String>;
+export interface PasswordManager {
+    toHash(password: string): Promise<string>;
     compare(storedPassword: string, suppliedPassword: string): Promise<boolean>;
 }
 
