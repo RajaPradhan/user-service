@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { PrivateRoute } from './shared/components';
+import { PrivateRoute, PageNotFound } from './shared/components';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -18,6 +18,9 @@ const Routes = () => {
         <PrivateRoute path="/" exact>
           <Dashboard />
         </PrivateRoute>
+        <Route path="*">
+          <PageNotFound />
+        </Route>
       </Switch>
     </Router>
   );
