@@ -27,7 +27,7 @@ A user management service with user registration, login, logout and session hand
 
 - **Design pattern** : The code is organised as context providers, reducers and hooks to facilitate reusability and functional programming approach. The `shared` directory contains all the reusable artifacts. The `pages` directory contain the navigable pages in the UI.
 - **State management** : The application state is managed using context providers and useReducer()
-- **Testing** : All the usecases are covered with integration testing using React testing library. The atomic components have unit tests using Jest.
+- **Testing** : All the usecases are covered with integration testing using React testing library. The atomic components have unit tests using Jest. API mocking is done using [mswjs](https://mswjs.io/)
 - **Component library** : Components and Grid system of material-ui is used
 - **Component styling** : CSS-in-JS solution of material-ui is used
 - **Linting & Formatting** : Uses the default ESLint config of CRA. Prettier for code formatting. husky and lint-staged are used as auxiliary library
