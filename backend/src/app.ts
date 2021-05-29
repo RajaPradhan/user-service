@@ -19,7 +19,6 @@ dotenv.config();
 const app = express();
 app.set('trust proxy', true);
 
-// For local development
 const corsOptions = {
     origin: process.env.REACT_APP_ORIGIN,
     credentials: true,
@@ -31,6 +30,7 @@ app.use(json());
 app.use(
     cookieSession({
         signed: false,
+        sameSite: 'none',
         secure: process.env.NODE_ENV === 'production'
     })
 );
