@@ -117,6 +117,7 @@ const RegistrationForm = ({ onSubmit }: Props) => {
             label="Password"
             data-testid="password"
             type="password"
+            autoComplete="off"
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}

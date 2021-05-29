@@ -89,6 +89,7 @@ const LoginForm = ({ onSubmit }: Props) => {
             name="password"
             label="Password"
             type="password"
+            autoComplete="off"
             data-testid="password"
             value={formik.values.password}
             onChange={formik.handleChange}
