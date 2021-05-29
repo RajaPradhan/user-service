@@ -12,6 +12,7 @@ let typeOrmConfig: ConnectionOptions = {
 if (process.env.NODE_ENV === 'production') {
     typeOrmConfig = {
         ...typeOrmConfig,
+        ssl: { rejectUnauthorized: false }, // Required for Heroku
         url: process.env.DATABASE_URL // Obtained from Heroku env variable
     };
 } else {
