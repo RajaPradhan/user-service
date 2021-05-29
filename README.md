@@ -41,19 +41,50 @@ POST /api/users/logout
 GET  /api/users/currentuser
 ```
 
+Example success response
+
+```javascript
+{
+    "id": 101,
+    "fullName": "John Smith",
+    "email": "abc@xyz.com"
+}
+```
+
+Example error response
+
+```javascript
+{
+    "errors": [
+        {
+            "message": "Fullname must be atleast 5 characters",
+            "field": "fullName"
+        },
+        {
+            "message": "Email must be valid",
+            "field": "email"
+        },
+        {
+            "message": "Password must be atleast 8 characters and must contain atleast a digit and a character",
+            "field": "password"
+        }
+    ]
+}
+```
+
 ### To run locally
 
 1. Download and install PostgreSQL
 2. Install backend dependencies using `yarn install`
-3. Create a `.env` file under `backend` directory and set the following environment variables:
+3. Create a `.env` file under `backend` directory and set the following environment variables (change the values as per your configuration):
 
 ```
-JWT_KEY
-DB_HOST
-DB_PORT
-DB_DATABASE
-DB_USERNAME
-DB_PASSWORD
+JWT_KEY=sup3rs3cre1k3y
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=user_db
+DB_USERNAME=mydbusername
+DB_PASSWORD=mydbpassword
 REACT_APP_ORIGIN=http://localhost:3000
 ```
 
