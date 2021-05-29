@@ -1,15 +1,17 @@
-import { waitFor } from '@testing-library/react';
+import { waitFor, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import render, { history } from '../../../shared/testUtils/setup';
 import Selectors from '../../../shared/testUtils/selectors';
 
 describe('Tests for Registration page', () => {
-  let renderedApp;
+  let renderedApp: RenderResult;
+
   beforeEach(() => {
     history.push('/register');
     renderedApp = render();
   });
+
   it('should successfully render the registration page', async () => {
     const { container } = renderedApp;
 

@@ -46,6 +46,7 @@ const RegistrationForm = ({ onSubmit }: Props) => {
   const validationSchema = yup.object().shape({
     fullName: yup
       .string()
+      .trim()
       .required('Full name is required')
       .min(5, 'Full name must be atleast 5 characters'),
     email: yup

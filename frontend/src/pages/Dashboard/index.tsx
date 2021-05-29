@@ -29,7 +29,7 @@ const Dashboard = () => {
   const { logoutUser } = useLogoutUser(currentUserInfoDispatch);
 
   const handleLogout = async () => {
-    await logoutUser();
+    logoutUser();
     history.push('/login');
   };
 

@@ -1,20 +1,25 @@
-import { waitFor } from '@testing-library/react';
+import { waitFor, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import render, { history } from '../../../shared/testUtils/setup';
 import Selectors from '../../../shared/testUtils/selectors';
 
 describe('Tests for Login page', () => {
-  it('should successfully render the login page', async () => {
+  let renderedApp: RenderResult;
+
+  beforeEach(() => {
     history.push('/login');
-    const { container } = render();
+    renderedApp = render();
+  });
+
+  it('should successfully render the login page', async () => {
+    const { container } = renderedApp;
 
     expect(container.querySelector(Selectors.LOGIN_FORM)).toBeInTheDocument();
   });
 
   it('should show field validation messages', async () => {
-    history.push('/login');
-    const { container } = render();
+    const { container } = renderedApp;
 
     expect(container.querySelector(Selectors.LOGIN_FORM)).toBeInTheDocument();
 
@@ -45,8 +50,7 @@ describe('Tests for Login page', () => {
   });
 
   it('should successfully login user', async () => {
-    history.push('/login');
-    const { container } = render();
+    const { container } = renderedApp;
 
     const loginForm = container.querySelector(Selectors.LOGIN_FORM);
 

@@ -1,15 +1,15 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 import { CurrentUserInfoState, RequestDispatch } from '../types';
-
-interface Props {
-  children: ReactNode;
-  value: ProviderValue;
-}
 
 interface ProviderValue {
   currentUserInfoState: CurrentUserInfoState;
   currentUserInfoDispatch: RequestDispatch;
+}
+
+interface Props {
+  children: JSX.Element;
+  value: ProviderValue;
 }
 
 const CurrentUserInfoContext =

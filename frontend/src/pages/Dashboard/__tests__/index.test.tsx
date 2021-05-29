@@ -1,11 +1,12 @@
-import { waitFor } from '@testing-library/react';
+import { waitFor, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import render, { history } from '../../../shared/testUtils/setup';
 import Selectors from '../../../shared/testUtils/selectors';
 
 describe('Tests for Dashboard page', () => {
-  let renderedApp: any;
+  let renderedApp: RenderResult;
+
   beforeEach(async () => {
     history.push('/login');
     renderedApp = render();
@@ -32,6 +33,7 @@ describe('Tests for Dashboard page', () => {
       ).toHaveTextContent('Welcome John Doe'),
     );
   });
+
   it('should successfully render dashboard page with welcome message', async () => {
     const { container } = renderedApp;
     // expect welcome message on dashboard

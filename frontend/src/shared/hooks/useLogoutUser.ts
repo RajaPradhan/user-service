@@ -20,13 +20,10 @@ const useLogoutUser = (currentUserInfoDispatch: RequestDispatch) => {
         type: RequestActionType.REQUEST_SUCCESS,
         payload,
       });
-      //   Promise.resolve();
     } catch (error) {
       currentUserInfoDispatch({
         type: RequestActionType.REQUEST_FAILURE,
       });
-
-      //   Promise.reject();
     }
   };
 
