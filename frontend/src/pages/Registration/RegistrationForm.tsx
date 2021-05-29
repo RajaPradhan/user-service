@@ -57,7 +57,7 @@ const RegistrationForm = ({ onSubmit }: Props) => {
       .string()
       .required('Password is required')
       .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d#?!@$%^&*-]{8,}$/,
         'Password must be atleast 8 characters and must contain atleast a digit and a character',
       ),
   });
