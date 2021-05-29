@@ -32,7 +32,7 @@ A user management service with user registration, login, logout and session hand
 - **Component styling** : CSS-in-JS solution of material-ui is used
 - **Linting & Formatting** : Uses the default ESLint config of CRA. Prettier for code formatting. husky and lint-staged are used as auxiliary library
 
-### REST APIs
+## REST APIs
 
 ```
 POST /api/users/register
@@ -72,7 +72,7 @@ Example error response
 }
 ```
 
-### To run locally
+## To run locally
 
 1. Download and install PostgreSQL
 2. Install backend dependencies using `yarn install`
@@ -106,7 +106,7 @@ REACT_APP_API_ENDPOINT=http://localhost:5000
 
 7. Start the frontend dev server unsing `yarn start`.
 
-### Further improvements
+## Further improvements
 
 - The service can be further improved by adding features like:
   - Change password
@@ -114,7 +114,7 @@ REACT_APP_API_ENDPOINT=http://localhost:5000
   - Email verification in the registration process
   - Multi-factor Authentication (MFA)
 
-### Test cases snapshot
+## Test cases snapshot
 
 Backend:
 
