@@ -8,7 +8,7 @@ A user management service with user registration, login, logout and session hand
 
 - **Backend** : Express, TypeScript, Jest, SuperTest
 - **Database & ORM** : PostgreSQL, TypeORM
-- **Frontend** : React, TypeScript, Jest, React Testing Library, mswjs
+- **Frontend** : React, TypeScript, Material UI, Jest, React Testing Library, mswjs
 
 ## Design decisions
 
@@ -99,7 +99,7 @@ Connected to Postgres DB
 Server listening on port 5000
 ```
 
-Now that the express server is running, bootstarp the frontend:
+Now that the express server is running, bootstrap the frontend:
 
 5. Install frontend dependencies using `yarn install`
 6. Create a `.env` file under `frontend` directory and set the following environment variables:
